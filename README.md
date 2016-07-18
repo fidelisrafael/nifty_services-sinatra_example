@@ -91,7 +91,7 @@ Take a look in in services for
 * **Users**
    * [CreateService](app/services/v1/users/create_service.rb) *(Demonstrate custom validations and on the fly `record_attributes_whitelist` for allowing specific attributes based on options)*
    * [AuthService](app/services/v1/users/auth_service.rb) *(Demonstrate BaseService usage)*
-   *  [ActivateUserAccountService](app/services/v1/users/auth_service.rb) *(Demonstrates silly different usage of BaseUpdate)*
+   * [ActivateAccountService](app/services/v1/users/activate_account_service.rb) *(Demonstrates a different usage of BaseUpdate overrriding `update_record` method)*
    * [ActivationMailDeliveryService](app/services/v1/users/activation_mail_delivery_service.rb) *(Demonstrates BaseActionService usage)*
 
 * **Posts**
