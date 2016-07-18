@@ -1,0 +1,19 @@
+en:
+  mailers:
+    activate_acount: 'Activate your account'
+  nifty_services:
+    errors:
+      invalid_api_key: 'Invalid API key for request'
+      comments:
+        not_found: "Comment invalid or not found"
+      posts:
+        duplicate_record: "This posts was already created"
+        not_found: "Invalid or not found post"
+        duplicated_comment_for_user: "This comment was recently posted by user."
+      users:
+        not_found: "Invalid or not found user"
+        account_already_activated: "Account already activated"
+        invalid_account_activation_token: "Invalid account activation token"
+        invalid_credentials: "Invalid credentials"
+        account_not_activated: "Account not confirmated"
+        cant_execute_send_account_activation_mail: "Please, wait a few minutes before sending this request again."

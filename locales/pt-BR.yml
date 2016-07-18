@@ -1,0 +1,19 @@
+en:
+  mailers:
+    activate_acount: 'Ative sua conta!'
+  nifty_services:
+    errors:
+      invalid_api_key: 'Chave de API inválida'
+      comments:
+        not_found: "Comentário não encontrado"
+      posts:
+        duplicate_record: "Ese post já foi criado anteriormente"
+        not_found: "Post inválido ou não encontrado"
+        duplicated_comment_for_user: "Esse comentário já foi recentemente postado"
+      users:
+        not_found: "Usuário invalido ou não encontrado"
+        account_already_activated: "Conta já ativada anteriormente"
+        invalid_account_activation_token: "Token de confirmação de conta inválido"
+        invalid_credentials: "Credenciais inválidas"
+        account_not_activated: "Conta não confirmada"
+        cant_execute_send_account_activation_mail: "Por favor, aguarde alguns minutos antes de solicitar um novo email de ativação da sua conta."
