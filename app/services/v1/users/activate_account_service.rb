@@ -39,6 +39,10 @@ module Services
           # only user can activate your owned account
           @record == @user
         end
+
+        def after_success
+          logger.info('Successfully activated user %s account!' % @user.email)
+        end
       end
     end
   end

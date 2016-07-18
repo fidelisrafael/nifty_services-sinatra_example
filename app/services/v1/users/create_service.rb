@@ -16,6 +16,11 @@ module Services
 
         USER_ROLE_ATTRIBUTE = :role
 
+        after_error do
+          logger.warn('Error creating user :(')
+          logger.error(errors)
+        end
+
         def initialize(options = {})
           super(nil, options)
         end
@@ -66,7 +71,13 @@ module Services
         end
 
         def after_success_actions
+          log_creation
           activate_user_account! if option_enabled?(:activate_user_account)
+        end
+
+        def log_creation
+          logger.info('Successfully created user with email %s' % @record.email)
+          logger.info('Full user data: %s' % @record.to_json)
         end
 
         def activate_user_account!

@@ -4,6 +4,8 @@ module Controllers
 
     included do
       def fetch_post_for(user, id)
+        return nil unless user
+
         user.posts.find_by(id: id)
       end
 

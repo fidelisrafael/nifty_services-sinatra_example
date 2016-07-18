@@ -5,6 +5,16 @@ module Services
 
         attr_reader :auth_token
 
+        after_success do
+          data = [@auth_token, auth_user.id]
+          logger.info("Succesfully set auth_token = '%s' for user %s" % data)
+        end
+
+        after_error do
+          logger.warn('Cant authenticate user(%s), cuz:' % options[:email])
+          logger.error(errors)
+        end
+
         def execute
           execute_action do
             if authenticate_user
@@ -14,6 +24,7 @@ module Services
           end
         end
 
+        private
         def can_execute?
           unless auth_user
             return not_authorized_error!(%s(users.invalid_credentials))

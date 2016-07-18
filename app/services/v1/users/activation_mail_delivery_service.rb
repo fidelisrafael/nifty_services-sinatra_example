@@ -5,7 +5,7 @@ module Services
 
         INTERVAL_TO_SEND_ANOTHER_MAIL = 1.minutes
 
-        # action_name :send_account_activation_mail
+        action_name :send_account_activation_mail
 
         attr_reader :user
 
@@ -40,6 +40,10 @@ module Services
 
         def record_error_key
           :users
+        end
+
+        def after_success
+          logger.info('Successfully sent activation acount mail to user %s' % @user.email)
         end
       end
     end
