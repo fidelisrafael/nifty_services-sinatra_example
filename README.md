@@ -137,7 +137,7 @@ put '/:id' do
 end
 ```
 
-See the `/controllers/v1`(app/controllers/v1) folder to get amazed with organization and readability \o/ 
+See the [`/controllers/v1`](app/controllers/v1) folder to get amazed with organization and readability \o/ 
 
 ---
 
