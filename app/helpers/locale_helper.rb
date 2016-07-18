@@ -16,7 +16,7 @@ module Helpers
     end
 
     def current_locale
-      locale       = locale_from_request || DEFAULT_LOCALE
+      locale = locale_from_request || DEFAULT_LOCALE
       valid_locale = VALID_LOCALES.member?(locale.to_sym)
 
       valid_locale ? locale : I18n.default_locale
