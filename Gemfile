@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'shotgun'
-gem "sinatra-activerecord"
-gem "sqlite3"
-gem "rake"
-gem 'pry'
 gem 'bcrypt'
-gem 'pony'
+gem 'faker'
 gem 'letter_opener'
-gem "nifty_services", "~> 0.0.5"
+gem 'nifty_services', '~> 0.0.5'
+gem 'pony'
+gem 'pry'
+gem 'rake'
+gem 'shotgun'
+gem 'sinatra'
+gem 'sinatra-activerecord'
+gem 'sinatra-contrib'
+gem 'sqlite3'
