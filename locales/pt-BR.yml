@@ -1,4 +1,4 @@
-en:
+'pt-BR':
   mailers:
     activate_acount: 'Ative sua conta!'
   nifty_services:
@@ -6,6 +6,7 @@ en:
       invalid_api_key: 'Chave de API inválida'
       comments:
         not_found: "Comentário não encontrado"
+        user_cant_update: "Você não tem permissões para atualizar este comentário"
       posts:
         duplicate_record: "Ese post já foi criado anteriormente"
         not_found: "Post inválido ou não encontrado"
