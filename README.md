@@ -4,6 +4,8 @@
 
 This simple API projects was developed to serve as use case and sample application for users who want to use [`nifty_services`](https://github.com/fidelisrafael/nifty_services) as Service Object Oriented in your Sinatra applications.
 
+---
+
 ## Setup
 
 First, clone this application:
@@ -26,7 +28,10 @@ Install required binaries(to compile SQLite3 gem)
 
 MacOS Leopard or later comes with SQlite3 pre installed. 
 
-Install  gem dependencies: `$ bundle install`
+**Install  project gem dependencies**: `$ bundle install`
+
+
+---
 
 ### Generate database: & seed 
 
@@ -36,11 +41,11 @@ Make sure `log/seeds.log` was created, otherwise, execute: `$ rake db:seed` to c
 
 ### Run application:
 
+Use `rackup` for better perfomance or `shotgun` to reload application in every request.
+  
 ```
-$ rackup config.ru -p 9292
-INFO  WEBrick 1.3.1
-INFO  ruby 2.3.0 (2015-12-25) [x86_64-linux]
-INFO  WEBrick::HTTPServer#start: pid=9840 port=9292
+$ rackup config.ru -p 9292 # better
+$ shotgun rackup config.ru -p 9292 # for development
 ```
 
 ## Postman Collection
@@ -60,6 +65,11 @@ After importing, you must set the following **environment variables**
  Make sure you're running the correct environment and start playing with endpoints.
 
 While playing around, try modifying some values in the URL, such the `ids` to see all responses formats (`422`, `404`, `403`, `400`), send invalid `auth_tokens` and try to update or delete resources which don't belongs to `current_user`, just to give a better ideia of the whole thing.
+Change `locale` request param to see different feedback messages for requests.
+
+If you don't have time to play around now, you just can see sample [API responses here](#api-responses-samples)
+
+---
 
 ## Log
 
@@ -67,6 +77,7 @@ While playing with endpoints in Postman, run another bash terminal and execute:
 
 `$ tail -f log/app_services.log` to follow services logs.
 
+---
 
 ## Endpoints
 
@@ -97,6 +108,8 @@ Take a look in in services for
 
 Want to see all services working together? See [**System::SeedService**](app/services/v1/system/seed_service.rb) who is responsible to create initial seed data across application. (the sames services used here, are used in endpoints, this is the aim of NiftyServices, allow bussiness logic to be shared, reused and used as components)
 
+---
+
 ## Endpoints simplicity
 
 Your controllers files must be very tiny and readable when using `NiftyServices`, see for example the CRUD controller for `Posts`:
@@ -125,6 +138,119 @@ end
 ```
 
 See the `/controllers/v1`(app/controllers/v1) folder to get amazed with organization and readability \o/ 
+
+---
+
+## API  Responses Samples
+
+One of the great benefits when using a well defined object-service-oriented layer for application, its to gain a **standardized objects to create standardized responses for you API's**, below you can see that all responses follow a defined response format, so all clients(front-end applications, mobile apps, etc) can make sure that responses will follow a defined pattern! 
+
+#### Recently created comment for post (avoid duplication)
+
+```json
+{
+  "error": true,
+  "status": "forbidden",
+  "status_code": 403,
+  "errors": [
+    "This comment was recently posted by user."
+  ]
+}
+```
+
+#### Creating comment for non existent post
+
+```json
+{
+  "error": true,
+  "status": "not_found",
+  "status_code": 404,
+  "errors": [
+    "Invalid or not found post"
+  ]
+}
+```
+
+#### Invalid user(not authenticated) trying to create post
+```json
+{
+  "error": true,
+  "status": "not_found",
+  "status_code": 404,
+  "errors": [
+    "Invalid or not found user"
+  ]
+}
+```
+
+#### Invalid parameters
+
+```json
+{
+  "error": true,
+  "status": "unprocessable_entity",
+  "status_code": 422,
+  "errors": [
+    {
+      "content": [
+        "can't be blank"
+      ]
+    }
+  ]
+}
+```
+
+#### Trying to update a comment belogings to another user
+
+```json
+{
+  "error": true,
+  "status": "forbidden",
+  "status_code": 403,
+  "errors": [
+    "User is not allowed to update this comment"
+  ]
+}
+```
+
+#### Successfully updated a owned comment
+```json
+{
+  "success": true,
+  "status": "ok",
+  "status_code": 200,
+  "updated": true,
+  "changed_attributes": [
+    "content"
+  ],
+  "comment": "{ ... }"
+}
+```
+
+#### Successfully deleted a owned comment
+```json
+{
+  "success": true,
+  "status": "ok",
+  "status_code": 200,
+  "comment": "{ ... }"
+}
+```
+
+#### Trying to delete a non existent comment (locale: pt-BR)
+
+```json
+{
+  "error": true,
+  "status": "not_found",
+  "status_code": 404,
+  "errors": [
+    "Comentário não encontrado"
+  ]
+}
+```
+
+---
 
 ## Futher info
 
