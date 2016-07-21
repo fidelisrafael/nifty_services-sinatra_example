@@ -11,11 +11,13 @@ require 'i18n/backend/fallbacks'
 
 require 'letter_opener'
 
-Dir['app/{**, **/**}/*.rb'].each {|file| require File.expand_path(file) }
+Dir['app/{**, **/**}/*.rb'].sort.each {|file| require File.expand_path(file) }
 
 NiftyServices.config do |config|
   config.user_class = User
-  config.logger = Logger.new('log/app_services.log')
+  File.new('log/app_services.log', 'w')
+  file = File.open('log/app_services.log', File::WRONLY | File::APPEND)
+  config.logger = Logger.new(file)
 end
 
 Pony.override_options = { :to => 'admin@myapp.com' }
