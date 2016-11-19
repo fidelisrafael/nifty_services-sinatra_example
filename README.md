@@ -26,14 +26,14 @@ Install required binaries(to compile SQLite3 gem)
 
 **Mac OS**
 
-MacOS Leopard or later comes with SQlite3 pre installed. 
+MacOS Leopard or later comes with SQlite3 pre installed.
 
 **Install  project gem dependencies**: `$ bundle install`
 
 
 ---
 
-### Generate database: & seed 
+### Generate database: & seed
 
 `$ rake db:reset`
 
@@ -42,10 +42,10 @@ Make sure `log/seeds.log` was created, otherwise, execute: `$ rake db:seed` to c
 ### Run application:
 
 Use `rackup` for better perfomance or `shotgun` to reload application in every request.
-  
+
 ```
 $ rackup config.ru -p 9292 # better
-$ shotgun rackup config.ru -p 9292 # for development
+$ shotgun config.ru -p 9292 # for development
 ```
 
 ## Postman Collection
@@ -61,7 +61,7 @@ First install Postman, and then use the following link to import this collection
 After importing, you must set the following **environment variables**
 
 `nifty_services_sinatra_host = http://localhost:9292/api`
- 
+
  Make sure you're running the correct environment and start playing with endpoints.
 
 While playing around, try modifying some values in the URL, such the `ids` to see all responses formats (`422`, `404`, `403`, `400`), send invalid `auth_tokens` and try to update or delete resources which don't belongs to `current_user`, just to give a better ideia of the whole thing.
@@ -83,10 +83,10 @@ While playing with endpoints in Postman, run another bash terminal and execute:
 
 In this application there are a few endpoints to demonstrate all capabilities of `Nifty Services`, there are samples of `CRUD Services` and `ActionServices`, as listed below:
 
-#### Services list 
+#### Services list
 ![](http://i.imgur.com/fTmAude.png)
 
-Take a look in in services for 
+Take a look in in services for
 
 * **Users**
    * [CreateService](app/services/v1/users/create_service.rb) *(Demonstrate custom validations and on the fly `record_attributes_whitelist` for allowing specific attributes based on options)*
@@ -98,13 +98,13 @@ Take a look in in services for
    * [CreateService](app/services/v1/posts/create_service.rb) *(Demonstrates the usage of `build_record_scope` and `on_save_record_error` methods)*
    * [UpdateService](app/services/v1/posts/update_service.rb)
    * [DeleteService](app/services/v1/posts/delete_service.rb)
-  
+
 * **Comments**
    * [CreateService](app/services/v1/comments/create_service.rb) *(Demonstrates how to override `build_record` method to create custom objects)*
    * [UpdateService](app/services/v1/comments/update_service.rb) *(I'm in love)*
    * [DeleteService](app/services/v1/comments/delete_service.rb) *(How can be so simple? <3)*
 * **System**
-  * [SeedService](app/services/v1/system/seed_service.rb) *(Demonstrates BaseActionService usage plus how to use multiples services together )* 
+  * [SeedService](app/services/v1/system/seed_service.rb) *(Demonstrates BaseActionService usage plus how to use multiples services together )*
 
 Want to see all services working together? See [**System::SeedService**](app/services/v1/system/seed_service.rb) who is responsible to create initial seed data across application. (the sames services used here, are used in endpoints, this is the aim of NiftyServices, allow bussiness logic to be shared, reused and used as components)
 
@@ -137,13 +137,13 @@ put '/:id' do
 end
 ```
 
-See the [`/controllers/v1`](app/controllers/v1) folder to get amazed with organization and readability \o/ 
+See the [`/controllers/v1`](app/controllers/v1) folder to get amazed with organization and readability \o/
 
 ---
 
 ## API  Responses Samples
 
-One of the great benefits when using a well defined object-service-oriented layer for application, its to gain a **standardized objects to create standardized responses for you API's**, below you can see that all responses follow a defined response format, so all clients(front-end applications, mobile apps, etc) can make sure that responses will follow a defined pattern! 
+One of the great benefits when using a well defined object-service-oriented layer for application, its to gain a **standardized objects to create standardized responses for you API's**, below you can see that all responses follow a defined response format, so all clients(front-end applications, mobile apps, etc) can make sure that responses will follow a defined pattern!
 
 #### Recently created comment for post (avoid duplication)
 
